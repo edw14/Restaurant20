@@ -1,11 +1,5 @@
-import styles from './page.module.css'
+import React from "react";
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div>
-        <h1>Restaurant20</h1>
-      </div>
-    </main>
-  )
+  return <h2>Homepage</h2>;
 }
