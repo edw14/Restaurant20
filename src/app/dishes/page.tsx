@@ -7,42 +7,35 @@ export default function DishesPage() {
       <h2>Dishes</h2>
 
       <form
-        className="flex flex-col"
         onSubmit={(event) => {
           event.preventDefault();
 
-          console.log("clicked", [...new FormData(event.target).entries()]);
+          if (event.target instanceof HTMLFormElement) {
+            console.log(
+              "dish submitted",
+              Object.fromEntries(new FormData(event.target).entries())
+            );
+          }
         }}
       >
         <div>
-          <label htmlFor="DishName" className="mb-2 italic">
-            Dish Name :{" "}
-          </label>
-          <input
-            className="mb-4 border-b-2"
-            id="DishName"
-            name="DishName"
-            type="text"
-            required
-          />
+          <label htmlFor="DishName">Dish Name : </label>
+          <input id="DishName" name="name" type="text" required />
         </div>
 
         <div>
-          <label htmlFor="DescriptionOfIngredients" className="mb-2 italic">
+          <label htmlFor="DescriptionOfIngredients">
             Description of Ingredients :{" "}
           </label>
           <textarea
-            className="mb-4 border-b-2"
             id="DescriptionOfIngredients"
-            name="CategoryOfFieldd"
+            name="description"
             required
           ></textarea>
         </div>
 
         <div>
-          <label htmlFor="CategoryOfField" className="mb-2 italic">
-            Category :{" "}
-          </label>
+          <label htmlFor="CategoryOfField">Category : </label>
           <select id="CategoryOfField" name="category">
             <option value="appetizer">appetizer</option>
             <option value="soup">soup</option>
@@ -53,25 +46,12 @@ export default function DishesPage() {
         </div>
 
         <div>
-          <label htmlFor="Price" className="mb-2 italic">
-            Price :{" "}
-          </label>
-          <input
-            className="mb-4 border-b-2"
-            id="Price"
-            name="Price"
-            type="number"
-            required
-          />
+          <label htmlFor="Price">Price : </label>
+          <input id="Price" name="price" type="number" required />
         </div>
 
         <div>
-          <button
-            type="submit"
-            className="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700"
-          >
-            Add
-          </button>
+          <button type="submit">Add</button>
         </div>
       </form>
     </section>
