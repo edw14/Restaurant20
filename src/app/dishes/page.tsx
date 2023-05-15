@@ -7,6 +7,7 @@ export default function DishesPage() {
       <h2>Dishes</h2>
 
       <form
+        name="dish-form"
         onSubmit={(event) => {
           event.preventDefault();
 
