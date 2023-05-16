@@ -1,6 +1,6 @@
-"use client";
 import React from "react";
-import DishForm from "@/components/DishForm";
+import DishForm from "src/components/DishForm";
+import Layout from "src/components/layout";
 
 export type Dish = {
   name: string;
@@ -10,7 +10,7 @@ export type Dish = {
 };
 
 function postDish(dish: Record<string, unknown>) {
-  fetch("/api/dish", {
+  return fetch("/api/dish", {
     method: "POST",
     body: JSON.stringify(dish),
   });
@@ -18,15 +18,16 @@ function postDish(dish: Record<string, unknown>) {
 
 export default function DishesPage() {
   return (
-    <section>
-      <h2>Dishes</h2>
+    <Layout>
+      <section>
+        <h2>Dishes</h2>
 
-      <DishForm
-        onSubmit={(values) => {
-          console.log(values);
-          postDish(values);
-        }}
-      />
-    </section>
+        <DishForm
+          onSubmit={(values) => {
+            postDish(values).catch(console.log);
+          }}
+        />
+      </section>
+    </Layout>
   );
 }

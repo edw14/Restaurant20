@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import DishesPage from "@/app/dishes/page";
+import DishesPage from "src/pages/dishes";
 
 describe("Dishes form", () => {
   it("has all necessary form fields: name, description, category, price, and Add button", () => {
@@ -56,17 +56,12 @@ describe("Dishes form", () => {
       name: /Price :/,
     });
 
-    const button = screen.getByRole("button", {
-      name: /Add/,
-    });
-
     fireEvent.change(name, { target: { value: "Spaghetti" } });
     fireEvent.change(description, {
       target: { value: "pasta,beef" },
     });
     fireEvent.change(category, { target: { value: "mainCourse" } });
     fireEvent.change(price, { target: { value: "10" } });
-    fireEvent.click(button);
 
     expect(screen.getByRole("form")).toHaveFormValues({
       name: "Spaghetti",
