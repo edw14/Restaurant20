@@ -14,6 +14,11 @@ function Navbar() {
           <Link href="/dishes">Dishes</Link>
         </li>
       </ul>
+      <ul>
+        <li>
+          <Link href="/menu">Menu</Link>
+        </li>
+      </ul>
     </nav>
   );
 }
