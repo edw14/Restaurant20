@@ -8,12 +8,12 @@ On the Dishes page I can add a new dish to the menu.
 - Create a separate `DishForm` component in `src/components`, and move the Dish form code from the Dishes page.
 - Add an onSubmit prop to `DishForm` component, that receives a callback function, and is called with the form data when the form is submitted.
 - On the Dishes page call the `/api/dish` endpoint with the Dish form data.
-- Create a new `POST` endpoint in `src/app/api/dish.ts` that can receive a Dish object from the frontend side.
+- Create a new `POST` endpoint in `src/pages/api/dish.ts` that can receive a Dish object from the frontend side.
 - Create a new `Dish` model in Prisma.
 - Validate the incoming Dish fields:
   ```js
   // CreateDishDto validation rules
-  { 
+  {
     name: ['required', 'string'],
     description: ['required', 'string'],
     category: ['required', { oneOf: ['appetizer', 'soup', 'salad', 'mainCourse', 'dessert'] } ],
@@ -36,7 +36,7 @@ On the Dishes page I can add a new dish to the menu.
 # Recommended reads
 
 - How to pass props to a React component: https://react.dev/learn/passing-props-to-a-component
-- API endpoints in Next.js: 
+- API endpoints in Next.js:
   - The first section of: https://nextjs.org/docs/pages/building-your-application/routing/api-routes
   - Adding TypeScript types: https://nextjs.org/docs/pages/building-your-application/routing/api-routes#adding-typescript-types
 - Prisma models: https://www.prisma.io/docs/concepts/components/prisma-schema/data-model
