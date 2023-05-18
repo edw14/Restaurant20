@@ -9,7 +9,7 @@ export type Dish = {
   price: number;
 };
 
-function postDish(dish: Record<string, unknown>) {
+function postDish(dish: Dish) {
   return fetch("/api/dish", {
     method: "POST",
     body: JSON.stringify(dish),

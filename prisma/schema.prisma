@@ -7,7 +7,11 @@ datasource db {
   url      = "file:./db.sqlite"
 }
 
-model User {
-  id    Int    @id @default(autoincrement())
-  email String @unique
+model Dish {
+  id          Int         @id @default(autoincrement())
+  createdAt   DateTime    @default(now())
+  name        String
+  description String 
+  category    String
+  price       Int
 }

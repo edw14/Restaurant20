@@ -1,7 +1,8 @@
 import React from "react";
+import { type Dish } from "src/pages/dishes";
 
 type Props = {
-  onSubmit: (values: Record<string, unknown>) => void;
+  onSubmit: (values: Dish) => void;
 };
 
 const DishForm = ({ onSubmit }: Props) => {
@@ -12,11 +13,18 @@ const DishForm = ({ onSubmit }: Props) => {
         event.preventDefault();
 
         if (event.target instanceof HTMLFormElement) {
-          const values = Object.fromEntries(
+          const values: object = Object.fromEntries(
             new FormData(event.target).entries()
           );
+
+          if ("price" in values) {
+            values.price = Number(values.price);
+          }
+
           console.log("dish submitted", values);
-          onSubmit(values);
+          if (isDish(values)) {
+            onSubmit(values);
+          }
         }
       }}
     >
@@ -60,3 +68,23 @@ const DishForm = ({ onSubmit }: Props) => {
 };
 
 export default DishForm;
+
+function isDish(values: object): values is Dish {
+  if (
+    "name" in values &&
+    typeof values.name === "string" &&
+    "description" in values &&
+    typeof values.description === "string" &&
+    "category" in values &&
+    typeof values.category === "string" &&
+    ["appetizer", "salad", "soup", "mainCourse", "dessert"].includes(
+      values.category
+    ) &&
+    "price" in values &&
+    typeof values.price === "number"
+  ) {
+    return true;
+  }
+
+  return false;
+}
