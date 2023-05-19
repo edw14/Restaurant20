@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function MenuCategory({ categoryName, dishes }) {
+type Props = {
+  categoryName: Props;
+  dishes: string;
+};
+
+export default function MenuCategory({ categoryName, dishes }: Props) {
   return (
     <>
       <section>
