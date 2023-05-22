@@ -1,19 +1,18 @@
+import { type Dish } from "@prisma/client";
 import React from "react";
+import MenuDish from "./MenuDish";
 
 type Props = {
-  categoryName: Props;
-  dishes: string;
+  dishes: Dish[];
 };
 
-export default function MenuCategory({ categoryName, dishes }: Props) {
+export default function MenuCategory({ dishes }: Props) {
   return (
-    <>
-      <section>
-        <h2>Category: </h2>
-      </section>
-      <section>
-        <p>list of dishes: </p>
-      </section>
-    </>
+    <section style={{ border: "1px solid" }}>
+      <h2>{dishes[0]?.category}</h2>
+      {dishes.map((dish) => {
+        return <MenuDish key={dish.id} dish={dish} />;
+      })}
+    </section>
   );
 }

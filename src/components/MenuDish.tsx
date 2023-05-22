@@ -1,5 +1,5 @@
+import { type Dish } from "@prisma/client";
 import React from "react";
-import { type Dish } from "src/pages/dishes";
 
 type Props = {
   dish: Dish;
@@ -7,13 +7,9 @@ type Props = {
 
 export default function MenuDish({ dish }: Props) {
   return (
-    <>
-      <section>
-        <h2> {dish.name} Name: </h2>
-      </section>
-      <section>
-        <p>descripton: </p>
-      </section>
-    </>
+    <article>
+      <h2> {dish.name}</h2>-<p>{dish.price}</p>
+      <p>{dish.description}</p>
+    </article>
   );
 }
