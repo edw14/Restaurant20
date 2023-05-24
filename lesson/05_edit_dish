@@ -1,0 +1,26 @@
+# Functional description
+
+I would like to review all dishes, and edit a single dish.
+
+# Technical description
+
+- Create a new branch to implement this feature.
+- Add support for GET requests in `dishes/{dishId}` endpoint on the server side and read the Dish from the database using the `dishId` in the request.
+- Add support for PUT requests in `dishes/{dishId}` endpoint on the server side and update the Dish identified by the `dishId` in the request. The same validation should be applied than in the Create Dish POST request.
+- Create a new Edit Dish page to edit a Dish under `/dishes/{dishId}`. This page should reuse the existing Dish form to edit a dish. Use the `dishId` in the url to load But this time, instead of creating a new one, should update the Dish.
+- Change the Dishes page that currently has the Create Dish form, to display a list of all Dishes.
+- For each Dish in the list it should display the Dish name and an Edit button. When clicking the button, there should be a redirect to `/dishes/{dishId}`, the Edit Dish page.
+- Move the Create Dish page to a new page under `/dishes/add`.
+- Submit a merge request and pass code review.
+
+# Skills
+
+- Can develop using feature branches.
+- Can Read, Update from CRUD.
+- Can route between React pages using dynamic route parameters.
+
+# Recommended reads
+
+- (CRUD) Read multiple records: https://www.prisma.io/docs/concepts/components/prisma-client/crud
+- Dynamic Routes: https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes
+- Linking and Navigating: https://nextjs.org/docs/pages/building-your-application/routing/linking-and-navigating
