@@ -67,7 +67,7 @@ export default async function dishHandler(
 
     const dish = await prisma.dish.create({ data: obj as Dish });
 
-    res.status(200).json({ dish });
+    res.status(201).json({ dish });
 
     return;
   }

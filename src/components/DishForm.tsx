@@ -1,5 +1,5 @@
 import React from "react";
-import { type Dish } from "src/pages/dishes";
+import { type Dish } from "src/pages/dishes/[dishId]";
 
 type Props = {
   onSubmit: (values: Dish) => void;

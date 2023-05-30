@@ -4,7 +4,7 @@ import MenuCategory from "src/components/MenuCategory";
 import Layout from "src/components/layout";
 
 //At "GET" method we dont need parameters
-function getDishes() {
+export function getDishes() {
   return fetch("/api/dishes", {
     method: "GET",
     //with the body we send data (in the GET request we dont have body)

@@ -1,36 +1,31 @@
-import React from "react";
-import DishForm from "src/components/DishForm";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import Layout from "src/components/layout";
-
-//export is multidimensional for other files
-export type Dish = {
-  name: string;
-  description: string;
-  category: "appetizer" | "salad" | "soup" | "mainCourse" | "dessert";
-  price: number;
-};
-
-//At "POST" methods we use values for the function parameters
-function postDish(dish: Dish) {
-  return fetch("/api/dish", {
-    method: "POST",
-    //with the body we send data (in the GET request we dont have body)
-    body: JSON.stringify(dish),
-    //.then() is a promise
-  }).then((response) => response.json());
-}
+import { getDishes } from "../menu";
+import { type Dish } from "@prisma/client";
 
 export default function DishesPage() {
+  const [dishes, setDishes] = useState<Dish[]>([]);
+
+  useEffect(() => {
+    getDishes()
+      .then(({ dishes }) => setDishes(dishes))
+      .catch(console.log);
+  }, []);
+
   return (
     <Layout>
       <section>
-        <h2>Dishes</h2>
-
-        <DishForm
-          onSubmit={(values) => {
-            postDish(values).catch(console.log);
-          }}
-        />
+        <h2>Edit Dish</h2>
+        <ul>
+          {dishes.map((dish) => (
+            <li key={dish.id}>
+              <Link href={`/dishes/${encodeURIComponent(dish.id)}`}>
+                {dish.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
     </Layout>
   );

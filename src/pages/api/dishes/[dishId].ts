@@ -73,7 +73,10 @@ export default async function dishesHandler(
       res.status(400).end(`Dish price is probably not a positive integer.`);
     }
 
-    const dish = await prisma.dish.create({ data: obj as Dish });
+    const dish = await prisma.dish.update({
+      data: obj as Dish,
+      where: { id: Number(req.query.dishId) },
+    });
 
     res.status(200).json({ dish });
   }
