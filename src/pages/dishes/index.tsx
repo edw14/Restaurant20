@@ -16,7 +16,7 @@ export default function DishesPage() {
   return (
     <Layout>
       <section>
-        <h2>Edit Dish</h2>
+        <h2>Dishes</h2>
         <ul>
           {dishes.map((dish) => (
             <li key={dish.id}>
@@ -25,6 +25,9 @@ export default function DishesPage() {
               </Link>
             </li>
           ))}
+          <button>
+            <Link href="../dishes/add">Add Dish</Link>
+          </button>
         </ul>
       </section>
     </Layout>

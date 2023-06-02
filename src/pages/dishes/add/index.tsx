@@ -1,7 +1,7 @@
 import React from "react";
 import DishForm from "src/components/DishForm";
 import Layout from "src/components/layout";
-import { type Dish } from "./[dishId]";
+import { type Dish } from "../[dishId]";
 
 //At "POST" methods we use values for the function parameters
 function postDish(dish: Dish) {
@@ -17,8 +17,7 @@ export default function AddDishPage() {
   return (
     <Layout>
       <section>
-        <h2>Add Dish</h2>
-
+        <h2>Add dish</h2>
         <DishForm
           onSubmit={(values) => {
             postDish(values).catch(console.log);

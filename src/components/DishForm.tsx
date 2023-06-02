@@ -1,36 +1,37 @@
 import React from "react";
 import { type Dish } from "src/pages/dishes/[dishId]";
+import { useState } from "react";
 
 type Props = {
   onSubmit: (values: Dish) => void;
+  dish?: Dish;
 };
 
-const DishForm = ({ onSubmit }: Props) => {
+const DishForm = ({ onSubmit, dish }: Props) => {
+  const [name, setName] = useState(dish?.name);
+  const [description, setDescription] = useState(dish?.description);
+  const [category, setCategory] = useState(dish?.category);
+  const [price, setPrice] = useState(dish?.price);
   return (
     <form
       name="dish-form"
       onSubmit={(event) => {
         event.preventDefault();
 
-        if (event.target instanceof HTMLFormElement) {
-          const values: object = Object.fromEntries(
-            new FormData(event.target).entries()
-          );
-
-          if ("price" in values) {
-            values.price = Number(values.price);
-          }
-
-          console.log("dish submitted", values);
-          if (isDish(values)) {
-            onSubmit(values);
-          }
+        if (isDish(values)) {
+          onSubmit(values, name, description, category, price);
         }
       }}
     >
       <div>
         <label htmlFor="DishName">Dish Name : </label>
-        <input id="DishName" name="name" type="text" required />
+        <input
+          id="DishName"
+          name="name"
+          type="text"
+          value={dish?.name}
+          required
+        />
       </div>
 
       <div>
@@ -40,13 +41,15 @@ const DishForm = ({ onSubmit }: Props) => {
         <textarea
           id="DescriptionOfIngredients"
           name="description"
+          value={dish?.description}
           required
         ></textarea>
       </div>
 
       <div>
         <label htmlFor="CategoryOfField">Category : </label>
-        <select id="CategoryOfField" name="category">
+        <select id="CategoryOfField" name="category" value={dish?.category}>
+          <option></option>
           <option value="appetizer">appetizer</option>
           <option value="soup">soup</option>
           <option value="salad">salad</option>
@@ -57,11 +60,17 @@ const DishForm = ({ onSubmit }: Props) => {
 
       <div>
         <label htmlFor="Price">Price : </label>
-        <input id="Price" name="price" type="number" required />
+        <input
+          id="Price"
+          name="price"
+          type="number"
+          value={dish?.price}
+          required
+        />
       </div>
 
       <div>
-        <button type="submit">Add</button>
+        <button>{dish ? "Edit dish" : "Add dish"}</button>
       </div>
     </form>
   );

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Layout from "src/components/layout";
 import { useRouter } from "next/router";
+import DishForm from "src/components/DishForm";
 
 //export is multidimensional for other files
 export type Dish = {
@@ -24,9 +25,9 @@ export default function EditDishPage() {
   return (
     <Layout>
       <section>
-        <h2>Edit Dish</h2>
+        <h2>{dish?.name}</h2>
         {JSON.stringify(dish)}
-        <button>Edit Dish.</button>
+        <DishForm onSubmit={console.log} dish={dish} />
       </section>
     </Layout>
   );
@@ -37,4 +38,13 @@ export function getDishById(dishId: string) {
     method: "GET",
     //with the body we send data (in the GET request we dont have body)
   }).then<{ dish: Dish }>((response) => response.json());
+}
+
+export function updateDish(dish: Dish) {
+  return fetch(`/api/dishes/${dish.id}`, {
+    method: "PUT",
+    //with the body we send data (in the GET request we dont have body)
+    body: JSON.stringify(dish),
+    //.then() is a promise
+  }).then((response) => response.json());
 }
